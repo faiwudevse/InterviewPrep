@@ -1,4 +1,6 @@
 class Solution {
+    // space complexity: O(n)
+    // time complexity: O(n)
     // iterate each character in the string
     // skip the first '(' and the last ')'
     public String removeOuterParentheses(String S) {
