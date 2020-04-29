@@ -22,5 +22,16 @@ class Solution {
             deque.addLast(i);
             if(nums[i] > nums[max_idx]) max_idx = i;
         }
+
+        int[] output  = new int[n - k + 1];
+        output[0] = nums[max_idx];
+
+        for(int i = k; i < n; i++) {
+            clean_deque(i, k);
+            deque.addLast(i);
+
+        }
+
+        return output;
     }
 }
