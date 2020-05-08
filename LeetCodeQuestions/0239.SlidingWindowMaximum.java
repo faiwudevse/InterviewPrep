@@ -1,37 +1,32 @@
-import java.util.ArrayDeque;
-
+/*
+time complexity: O(n)
+space complexity: O(n)
+link: https://leetcode.com/problems/sliding-window-maximum/
+thought process: 
+*/
 class Solution {
-    ArrayDeque<Integer> deque = new ArrayDeque<Integer>();
-    int[] nums;
-    public void cleanDeque(int i, int k) {
-        if (!deque.isEmpty() && deque.getFirst() == i - k) deque.removeFirst();
-
-        while(!deque.isEmpty() && nums[i] > nums[deque.getLast()]) deque.removeLast();
-    }
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
-        if (n * k == 0) return new int[0];
-        if (k == 1) return nums;
+        
+        if (n == 0) return nums;
+        
+        int[] result = new int[n - k + 1];
 
-        // init deque and output
-        this.nums = nums;
-        int max_idx = 0;
+        // store index
+        LinkedList<Integer> dq = new LinkedList<>();
 
-        for (int i = 0; i < k; i++) {
-            clean_deque(i, k);
-            deque.addLast(i);
-            if(nums[i] > nums[max_idx]) max_idx = i;
+        for (int i = 0; i < n; i++) {
+            // remove numbers out of range k
+            if (!dq.isEmpty() && dq.peek() < i - k + 1) dq.poll();
+
+            // remove smaller numbers in k range as they are usless
+            while (!dq.isEmpty() && nums[i] >= nums[dq.peekLast()]) dq.pollLast();
+
+            dq.offer(i);
+
+            if (i - k + 1 >= 0) result[i - k + 1] = nums[dq.peek()];
         }
 
-        int[] output  = new int[n - k + 1];
-        output[0] = nums[max_idx];
-
-        for(int i = k; i < n; i++) {
-            clean_deque(i, k);
-            deque.addLast(i);
-
-        }
-
-        return output;
+        return result;
     }
 }
