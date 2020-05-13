@@ -6,7 +6,7 @@
 
 ## DFS Module
 ### Recursion
-```
+```Python
 visited = set()
 def DFS(node, visited):
     if node in visted # terminator
@@ -21,7 +21,7 @@ def DFS(node, visited):
             DFS(next_node, visted)
 ```
 ### Stack
-```
+```Python
 def DFS(self, tree):
     if tree.root is None:
         return []
@@ -39,7 +39,7 @@ def DFS(self, tree):
 
 ## BFS
 ### Queue
-```
+```Python
 void BFS(graph, start, end):
     visited = set()
     queue = []
