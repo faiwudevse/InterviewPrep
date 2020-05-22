@@ -1,10 +1,8 @@
 # Algorithm Questions
 ## Arrays
-|序号|难度|题目|哈希表|映射|集合|状态|
-|---|---|---|---|---|---|---|
 
 
-## DFS Module
+## DFS
 ### Recursion
 ```Python
 visited = set()
@@ -52,4 +50,34 @@ void BFS(graph, start, end):
         nodes = generate_related_nodes(node)
         queue.push(nodes)
     #other processing work
+```
+
+```Java
+// count from start to target the shorest distant
+int BFS(Node start, Node target) {
+    Queue<Node> q; // queue the core data strucure
+    Set<Node> visted; // 
+
+    q.offer(start); // 
+    visted.add(start);
+
+    int step = 0;
+
+    while (q not empty) {
+        int sz = q.size();
+
+        for (int i = 0; i < sz; i++) {
+            Node cur = q.poll();
+
+            if (cur is target) return step;
+
+            for (Node x : cur.addj()) {
+                if (x not in visted) {
+                    q.offer(x);
+                    visited.add(x);
+                }
+           }
+        }
+    }
+}
 ```
